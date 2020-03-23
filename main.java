@@ -1,29 +1,36 @@
 import java.util.Scanner;
 
 public class main {
-
     public static void main(String[] args) {
-        int i=2;
-       linijka linijka = new linijka();
+        String s, t;
         Scanner scanner = new Scanner(System.in);
-        int liczba=0;
-        int  zagnieznienia=0;
-        while(liczba<1) {
-            System.out.println("Podaj liczba do ilu chcesz zeby pokazywala linijka:");
-            liczba = scanner.nextInt();
-            if(liczba<1)
-                System.out.println("BLĄD! Liczba musi być wieksza od 0!");
+        Levenshtein odleglosc = new Levenshtein();
+        System.out.println("Podaj pierwszy wyraz");
+        s = "test";
+        t = "test";
 
+        int test = 1;
+        while (test != 0) {
+            test = 0;
+            s = scanner.nextLine();
+            for (int i = 0; i < s.length(); i++)
+                if (!(s.charAt(i) >= 97 && s.charAt(i) <= 122))
+                    test++;
+            if(test!=0)
+                System.out.println("Wyraz musi skladac sie tylko z malych liter");
+        }
 
+        System.out.println("Podaj drugi wyraz: ");
+        test = 1;
+        while (test != 0) {
+            test = 0;
+            t = scanner.nextLine();
+            for (int i = 0; i < t.length(); i++)
+                if (!(t.charAt(i) >= 97 && t.charAt(i) <= 122))
+                    test++;
+        if(test!=0)
+            System.out.println("Wyraz musi skladac sie tylko z malych liter");
         }
-        while(zagnieznienia<1) {
-            System.out.println("Podaj liczbe zagnieznen:");
-            zagnieznienia = scanner.nextInt();
-            if(zagnieznienia<1)
-                System.out.println("BLĄD! Liczba zagnieznien musi być wieksza od 0!");
-        }
-       linijka.rysuj(liczba,zagnieznienia);
-       //przedzialki(5); //rysowanie kresek mniejszych niz tych co sa przy miarach
-      //sama_linia(5); //5 --- ile kresek, 2-- jaka cyfra obok
+        System.out.println("Odleglosc Levenshteina wynosi: " + odleglosc.LevQWERTY(s, t));
     }
 }
